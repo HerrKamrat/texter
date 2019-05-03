@@ -31,8 +31,14 @@ int onFtError(FT_Error error_code){
 
 template<typename T>
 struct view{
-    T* ptr;
+    using value_type = T;
+    using pointer_type = value_type*;
+
+    pointer_type ptr;
     size_t count;
+    
+    value_type& operator[](std::size_t idx)       { return ptr[idx]; }
+    const value_type& operator[](std::size_t idx) const { return ptr[idx]; }
 };
 
 struct Text {
@@ -105,8 +111,8 @@ int main(int argc, char** args){
     }
     
     hb_position_t length = 0;
-    for(int i = 0; i<glyph_pos_count; i++){
-        length += glyph_pos[i].x_advance;
+    for(int i = 0; i<pos.count; i++){
+        length += pos[i].x_advance;
     }
     std::cout << "length: " << length << "\n";
     std::cout << "" << u32.size() << "\n";
@@ -119,7 +125,7 @@ int main(int argc, char** args){
         for(; i<info.count; i++){
             auto r = utf8::utf32to8(u32.data() + i, u32.data() + i + 1, u8);
             r[0] = '\0';
-            printf("|%5d|%5d|%5d|%5d|%5d|%5s\n", i, u32[i], glyph_pos[i].x_advance, info.ptr[i].codepoint, info.ptr[i].cluster, u8);
+            printf("|%5d|%5d|%5d|%5d|%5d|%5s\n", i, u32[i], pos[i].x_advance, info[i].codepoint, info[i].cluster, u8);
         }
     }
     
