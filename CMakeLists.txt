@@ -11,6 +11,11 @@ set(FT_DIR "${CMAKE_SOURCE_DIR}/freetype-2.10.0/")
 set(FT_LIB_DIR "${FT_DIR}/osx/")
 set(FT_INCLUDE_DIR "${FT_DIR}/osx/include/")
 
+#test
+set(STB_SRC_DIR "${CMAKE_SOURCE_DIR}/stb/")
+
+
+set(CMAKE_CXX_STANDARD 20)
 
 project(texter)
 #add_library(utf8  
@@ -22,6 +27,10 @@ project(texter)
 
 add_executable(texter 
 main.cpp
+text.cpp
+text.hpp
+escape.hpp
+escape.cpp
 
 ${UNIBREAK_SRC_DIR}/wordbreakdef.h
 ${UNIBREAK_SRC_DIR}/emojidef.c
@@ -42,12 +51,16 @@ ${UNIBREAK_SRC_DIR}/wordbreak.c
 ${UNIBREAK_SRC_DIR}/wordbreak.h
 ${UNIBREAK_SRC_DIR}/wordbreakdata.c
 
+${STB_SRC_DIR}/stb_image_write.h
+
 )
 include_directories(texter 
 ${UTF8_SRC_DIR}
 ${UNIBREAK_SRC_DIR}
 ${HB_INCLUDE_DIR}
 ${FT_INCLUDE_DIR}
+
+${STB_SRC_DIR}
 )
 
 target_link_libraries(texter bz2 z ${HB_LIB_DIR}/libharfbuzz.a ${FT_LIB_DIR}/libfreetype.a)
