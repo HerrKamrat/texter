@@ -1,0 +1,21 @@
+[submodule "3rdparty/stb"]
+	path = 3rdparty/stb
+	url = https://github.com/nothings/stb.git
+[submodule "3rdparty/bx"]
+	path = 3rdparty/bx
+	url = https://github.com/bkaradzic/bx.git
+[submodule "3rdparty/SheenBidi"]
+	path = 3rdparty/SheenBidi
+	url = https://github.com/Tehreer/SheenBidi.git
+[submodule "3rdparty/json"]
+	path = 3rdparty/json
+	url = https://github.com/nlohmann/json.git
+[submodule "3rdparty/msdfgen"]
+	path = 3rdparty/msdfgen
+	url = https://github.com/Chlumsky/msdfgen.git
+[submodule "3rdparty/freetype"]
+	path = 3rdparty/freetype
+	url = https://github.com/freetype/freetype
+[submodule "3rdparty/harfbuzz"]
+	path = 3rdparty/harfbuzz
+	url = https://github.com/harfbuzz/harfbuzz

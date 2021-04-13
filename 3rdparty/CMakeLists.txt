@@ -1,0 +1,32 @@
+include("libunibreak.cmake")
+include("SheenBidi.cmake")
+include("utf8.cmake")
+
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+add_subdirectory(json)
+
+set(HB_HAVE_FREETYPE ON CACHE INTERNAL "")
+set(FREETYPE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/freetype/include/")
+set(FREETYPE_LIBRARY "freetype")
+
+
+set(FT_WITH_HARFBUZZ ON CACHE INTERNAL "")
+set(FT_CONFIG_OPTION_ERROR_STRINGS ON CACHE INTERNAL "")
+
+set(HARFBUZZ_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/harfbuzz/src/")
+set(HARFBUZZ_LIBRARIES "harfbuzz")
+
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/freetype")
+add_library(Freetype::Freetype ALIAS freetype)
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/harfbuzz")
+
+
+set(MSDFGEN_BUILD_MSDFGEN_STANDALONE OFF CACHE INTERNAL "")
+set(MSDFGEN_USE_OPENMP OFF CACHE INTERNAL "")
+set(MSDFGEN_USE_CPP11 ON CACHE INTERNAL "")
+set(MSDFGEN_USE_SKIA OFF CACHE INTERNAL "")
+set(MSDFGEN_INSTALL OFF CACHE INTERNAL "")
+set(FREETYPE_WITH_PNG OFF CACHE INTERNAL "")
+set(FREETYPE_WITH_HARFBUZZ OFF CACHE INTERNAL "")
+
+add_subdirectory(msdfgen)
